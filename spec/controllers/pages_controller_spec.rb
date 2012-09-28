@@ -5,7 +5,7 @@ describe PagesController do
 
   # execute this block before each test
   before(:each) do
-    @base_title = "Rails Tutorial Sample App | ""
+    @base_title = "Rails Tutorial Sample App | "
   end
 
   describe "GET 'home'" do
