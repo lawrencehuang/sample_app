@@ -3,6 +3,11 @@ require 'spec_helper'
 describe PagesController do
   render_views
 
+  # execute this block before each test
+  before(:each) do
+    @base_title = "Rails Tutorial Sample App | ""
+  end
+
   describe "GET 'home'" do
     it "returns http success" do
       get 'home'
@@ -11,7 +16,7 @@ describe PagesController do
     it "should have the right title" do
       get 'home'
       response.should have_selector("title",
-                                    :content => "Rails Tutorial Sample App | Home(家)")
+                                    :content => @base_title + "Home(家)")
     end
   end
 
@@ -23,7 +28,7 @@ describe PagesController do
     it "should have the right title" do
       get 'contact'
       response.should have_selector("title",
-                                    :content => "Rails Tutorial Sample App | Contact(聯絡人)")
+                                    :content => @base_title + "Contact(聯絡人)")
     end
   end
 
@@ -35,7 +40,7 @@ describe PagesController do
     it "should have the right title" do
       get 'about'
       response.should have_selector("title",
-                                    :content => "Rails Tutorial Sample App | About(關於)")
+                                    :content => @base_title + "About(關於)")
     end
   end
 
