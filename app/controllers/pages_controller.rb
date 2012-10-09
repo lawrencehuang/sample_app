@@ -1,3 +1,4 @@
+# coding : utf-8
 class PagesController < ApplicationController
   def home
     @title = "Home(家)"
