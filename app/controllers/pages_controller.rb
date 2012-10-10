@@ -1,14 +1,17 @@
 # coding : utf-8
 class PagesController < ApplicationController
   def home
-    @title = "Home(家)"
+    @title = "Home"
   end
 
   def contact
-    @title = "Contact(聯絡人)"
+    @title = "Contact"
   end
 
   def about
-    @title = "About(關於)"
+    @title = "About"
+  end
+  def help
+    @title = "Help"
   end
 end
