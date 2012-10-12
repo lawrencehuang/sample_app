@@ -10,10 +10,13 @@ gem 'sqlite3'
 gem 'json'
 
 group :development do
+  gem 'pg'
   gem 'rspec-rails'
+  gem 'annotate'
 end
 
 group :test do
+  gem 'pg'
   gem 'rspec'
   gem 'webrat'
   gem 'spork'
