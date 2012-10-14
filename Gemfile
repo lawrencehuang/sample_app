@@ -8,6 +8,7 @@ gem 'rails', '3.2.8'
 gem 'sqlite3'
 
 gem 'json'
+gem 'gravatar_image_tag'
 
 group :development do
   gem 'pg'
@@ -20,6 +21,7 @@ group :test do
   gem 'rspec'
   gem 'webrat'
   gem 'spork'
+  gem 'factory_girl_rails'
 end
 
 # Gems used only for assets and not required
