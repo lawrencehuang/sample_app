@@ -9,6 +9,9 @@ module SessionsHelper
   def current_user
     @current_user ||= user_from_remember_token
   end
+  def current_user?(user)
+    user == current_user
+  end
   def signed_in?
     !current_user.nil?
   end
@@ -17,7 +20,23 @@ module SessionsHelper
     cookies.delete(:remember_token)
     current_user = nil
   end
+
+  def deny_access
+    store_location
+    redirect_to signin_path, :notice => "Please login first to access this page"
+  end  
+  
+  def return_to_or(default)
+    redirect_to (session[:return_to] || default)
+    session[:return_to] = nil
+  end
+  
+  def store_location
+    session[:return_to] = request.fullpath
+  end
+  
   private
+  
   def user_from_remember_token
     User.authenticate_with_salt(*remember_token)
   end

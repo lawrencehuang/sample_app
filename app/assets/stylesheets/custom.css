@@ -1,13 +1,5 @@
 .container {
-width: 790px;
-width: 100%;
-margin-bottom: 0;
-}
-td.main {
-width: 70%;
-padding: 1em;
-}
-
+width: 710px;
 }
 body {
 background: #cff;
@@ -176,4 +168,13 @@ padding: 5px;
 font-size: 12px;
 list-style: square;
 }
+
+/* for index page */
+ul.users {
+margin-top: 1em;
+}
+.users li {
+list-style: none;
+}
+
 
