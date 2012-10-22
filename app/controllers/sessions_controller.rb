@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 #       redirect_to new_session_path
     else
       sign_in user
-      return_to_or(user)
+      redirect_back_or(user)
     end
 
   end

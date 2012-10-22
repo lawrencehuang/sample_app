@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(:page => params[:page], :per_page => 5)
     @title = @user.name
   end
 
@@ -52,14 +53,11 @@ class UsersController < ApplicationController
     flash[:success] = "Destroy successfully!"
     redirect_to users_path
   end
+
   
   private
-    def authenticate
-      deny_access unless signed_in?
-    end
     def correct_user
       @user = User.find(params[:id])
-      flash[:notice] = "Not the correct user!! Please sign in with the right user"
       redirect_to signin_path unless current_user?(@user)
     end
     

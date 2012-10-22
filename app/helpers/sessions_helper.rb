@@ -20,13 +20,16 @@ module SessionsHelper
     cookies.delete(:remember_token)
     current_user = nil
   end
-
+  
+  def authenticate
+    deny_access unless signed_in?
+  end
   def deny_access
     store_location
     redirect_to signin_path, :notice => "Please login first to access this page"
   end  
   
-  def return_to_or(default)
+  def redirect_back_or(default)
     redirect_to (session[:return_to] || default)
     session[:return_to] = nil
   end
