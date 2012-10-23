@@ -90,6 +90,7 @@ describe User do
         @user.has_password?("invalid").should be_false
       end
     end
+    
     describe "authenticate method" do
       it "should return nil on email/password mismatch" do
         wrong_password_user = User.authenticate(@user[:email], "wrong password")
@@ -104,7 +105,53 @@ describe User do
         matching_user.should == @user
       end
     end
-
+  end   
+    
+  describe 'relationships' do
+    before(:each) do
+      @follower = User.create(@attr)
+      @followed = FactoryGirl.create(:user,:email => FactoryGirl.generate(:email))
+    end
+    it "should have 'relationships' method" do
+      @follower.should respond_to(:relationships)
+    end
+    it "should have 'following' method" do
+      @follower.should respond_to(:following)
+      @followed.should respond_to(:following)
+    end
+    it "should have 'reverse_relationships' method" do
+      @follower.should respond_to(:reverse_relationships)
+    end
+    it "should have 'followers' method" do
+      @follower.should respond_to(:followers)
+      @followed.should respond_to(:followers)
+    end
+    it "should have a 'following?' method " do
+      @follower.should respond_to(:following?)
+    end
+    it "should have a 'follow!' method " do
+      @follower.should respond_to(:follow!)
+    end
+    it "should follow an user" do
+      @follower.follow!(@followed)
+      @follower.should be_following(@followed)
+    end  
+    it "should include the followed in the following array" do
+      @follower.follow!(@followed)
+      @follower.following.should include(@followed)
+    end    
+    it "should include follower in the followers array" do
+      @follower.follow!(@followed)
+      @followed.followers.should include(@follower)
+    end
+    it "should have an 'unfollow! method'" do
+      @follower.should respond_to(:unfollow!)
+    end
+    it "should unfollow! an user" do
+      @follower.follow!(@followed)
+      @follower.unfollow!(@followed)
+      @follower.should_not be_following(@followed)
+    end
   end
 end
 

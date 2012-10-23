@@ -3,9 +3,14 @@ require "factory_girl"
 
 FactoryGirl.define do
   factory :user do
-    name "Michael Hartl"
-    email "mhartl@example.com"
-    password "foobar"
-    password_confirmation "foobar"
+    name "Factory Girl"
+    email "fgirl@factory.com"
+    password "password"
+    password_confirmation "password"
+  end
+  FactoryGirl.define do
+    sequence :email do |n|
+      "factory#{n}@factory.com"
+    end
   end
 end
